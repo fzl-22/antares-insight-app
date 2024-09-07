@@ -1,0 +1,71 @@
+import 'package:antares_insight_app/core/errors/failures.dart';
+import 'package:antares_insight_app/src/users/domain/usecases/get_users.dart';
+import 'package:antares_insight_app/src/users/presentation/bloc/users_bloc.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockGetUsers extends Mock implements GetUsers {}
+
+void main() {
+  late GetUsers getUsers;
+  late UsersBloc usersBloc;
+
+  setUp(() {
+    getUsers = MockGetUsers();
+    usersBloc = UsersBloc(
+      getUsers: getUsers,
+    );
+  });
+
+  // arbitrary failure
+  const tHttpFailure = HttpFailure(
+    message: 'Unknown error occured, please try again later',
+    statusCode: 505,
+  );
+
+  tearDown(() => usersBloc.close());
+
+  test('initial state must be an [UsersInitial]', () {
+    expect(usersBloc.state, isA<UsersInitial>());
+  });
+
+  group('GetUsersEvent', () {
+    blocTest<UsersBloc, UsersState>(
+      'should emit [UsersLoading, UsersLoaded] when getUsers succeed',
+      build: () {
+        when(() => getUsers())
+            .thenAnswer((invocation) async => const Right([]));
+        return usersBloc;
+      },
+      act: (bloc) => bloc.add(const GetUsersEvent()),
+      expect: () => [
+        const GettingUsers(),
+        const UsersLoaded(users: []),
+      ],
+      verify: (bloc) {
+        verify(() => getUsers()).called(1);
+        verifyNoMoreInteractions(getUsers);
+      },
+    );
+
+    blocTest<UsersBloc, UsersState>(
+      'should emit [UsersLoading, UsersError] when getUsers failed',
+      build: () {
+        when(() => getUsers())
+            .thenAnswer((invocation) async => const Left(tHttpFailure));
+        return usersBloc;
+      },
+      act: (bloc) => bloc.add(const GetUsersEvent()),
+      expect: () => [
+        const GettingUsers(),
+        GetUsersError(message: tHttpFailure.errorMessage,),
+      ],
+      verify: (bloc) {
+        verify(() => getUsers()).called(1);
+        verifyNoMoreInteractions(getUsers);
+      },
+    );
+  });
+}
