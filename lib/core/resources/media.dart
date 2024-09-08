@@ -14,9 +14,16 @@ class Media {
   static const _baseImage = 'assets/images';
 
   // Icons
-  static const homeIcon = '$_baseIcon/home.svg';
+  static const chatOutline = '$_baseIcon/chat_outline.svg';
+  static const chatSolid = '$_baseIcon/chat_solid.svg';
+  static const homeOutline = '$_baseIcon/home_outline.svg';
+  static const homeSolid = '$_baseIcon/home_solid.svg';
+  static const processorOutline = '$_baseIcon/processor_outline.svg';
+  static const processorSolid = '$_baseIcon/processor_solid.svg';
+  static const settingOutline = '$_baseIcon/setting_outline.svg';
+  static const settingSolid = '$_baseIcon/setting_solid.svg';
 
   // Images
-  static const flutterLogo = '$_baseImage/flutter_logo.svg';
   static const dartLogo = '$_baseImage/dart_logo.svg';
+  static const flutterLogo = '$_baseImage/flutter_logo.svg';
 }
