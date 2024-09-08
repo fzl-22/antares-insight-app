@@ -14,143 +14,266 @@ import 'package:flutter/material.dart';
 class Typographies {
   const Typographies._();
 
-  static const bold64 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 64,
+  // Heading (46)
+
+  static const extraLight46 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 46,
   );
 
-  static const medium64 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 64,
-  );
-
-  static const regular64 = TextStyle(
+  static const normal46 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 64,
+    fontSize: 46,
   );
 
-  static const light64 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 64,
+  static const semiBold46 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 46,
   );
 
-  static const bold45 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 45,
+  static const extraBold46 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 46,
   );
 
-  static const medium45 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 45,
+  // Heading (40)
+
+  static const extraLight40 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 40,
   );
 
-  static const regular45 = TextStyle(
+  static const normal40 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 45,
+    fontSize: 40,
   );
 
-  static const light45 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 45,
+  static const semiBold40 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 40,
   );
 
-  static const bold32 = TextStyle(
-    fontWeight: FontWeight.bold,
+  static const extraBold40 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 40,
+  );
+
+  // Heading (38)
+
+  static const extraLight38 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 38,
+  );
+
+  static const normal38 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 38,
+  );
+
+  static const semiBold38 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 38,
+  );
+
+  static const extraBold38 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 38,
+  );
+
+  // Sub Heading (32)
+
+  static const extraLight32 = TextStyle(
+    fontWeight: FontWeight.w200,
     fontSize: 32,
   );
 
-  static const medium32 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 32,
-  );
-
-  static const regular32 = TextStyle(
+  static const normal32 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 32,
   );
 
-  static const light32 = TextStyle(
-    fontWeight: FontWeight.w300,
+  static const semiBold32 = TextStyle(
+    fontWeight: FontWeight.w600,
     fontSize: 32,
   );
 
-  static const bold23 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 23,
+  static const extraBold32 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 32,
   );
 
-  static const medium23 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 23,
+  // Sub Heading (30)
+
+  static const extraLight30 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 30,
   );
 
-  static const regular23 = TextStyle(
+  static const normal30 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 23,
+    fontSize: 30,
   );
 
-  static const light23 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 23,
+  static const semiBold30 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 30,
   );
 
-  static const bold16 = TextStyle(
-    fontWeight: FontWeight.bold,
+  static const extraBold30 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 30,
+  );
+
+  // Sub Heading (28)
+
+  static const extraLight28 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 28,
+  );
+
+  static const normal28 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 28,
+  );
+
+  static const semiBold28 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 28,
+  );
+
+  static const extraBold28 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 28,
+  );
+
+  // Title (20)
+
+  static const extraLight20 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 20,
+  );
+
+  static const normal20 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 20,
+  );
+
+  static const semiBold20 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
+  );
+
+  static const extraBold20 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 20,
+  );
+
+  // Title (18)
+  static const extraLight18 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 18,
+  );
+
+  static const normal18 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 18,
+  );
+
+  static const semiBold18 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+  );
+
+  static const extraBold18 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 18,
+  );
+
+  // Body (16)
+
+  static const extraLight16 = TextStyle(
+    fontWeight: FontWeight.w200,
     fontSize: 16,
   );
 
-  static const medium16 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 16,
-  );
-
-  static const regular16 = TextStyle(
+  static const normal16 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 16,
   );
 
-  static const light16 = TextStyle(
-    fontWeight: FontWeight.w300,
+  static const semiBold16 = TextStyle(
+    fontWeight: FontWeight.w600,
     fontSize: 16,
   );
 
-  static const bold11 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 11,
+  static const extraBold16 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 16,
   );
 
-  static const medium11 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 11,
+  // Body (14)
+
+  static const extraLight14 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 14,
   );
 
-  static const regular11 = TextStyle(
+  static const normal14 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 11,
+    fontSize: 14,
   );
 
-  static const light11 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 11,
+  static const semiBold14 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
   );
 
-  static const bold8 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 8,
+  static const extraBold14 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 14,
   );
 
-  static const medium8 = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 8,
+  // Caption (12)
+
+  static const extraLight12 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 12,
   );
 
-  static const regular8 = TextStyle(
+  static const normal12 = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 8,
+    fontSize: 12,
   );
 
-  static const light8 = TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 8,
+  static const semiBold12 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12,
+  );
+
+  static const extraBold12 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 12,
+  );
+
+  // Caption (10)
+
+  static const extraLight10 = TextStyle(
+    fontWeight: FontWeight.w200,
+    fontSize: 10,
+  );
+
+  static const normal10 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 10,
+  );
+
+  static const semiBold10 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 10,
+  );
+
+  static const extraBold10 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 10,
   );
 }

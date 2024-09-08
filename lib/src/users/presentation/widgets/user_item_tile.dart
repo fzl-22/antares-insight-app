@@ -37,13 +37,13 @@ class UserItemTile extends StatelessWidget {
                 children: [
                   Text(
                     '${user.firstName} ${user.lastName}',
-                    style: Typographies.medium16,
+                    style: Typographies.semiBold16,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     user.email,
-                    style: Typographies.regular11,
+                    style: Typographies.normal12,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

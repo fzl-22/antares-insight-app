@@ -2,7 +2,7 @@ name: antares_insight_app
 description: "Proof of concept of Antares' alerting and notification IoT system."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   bloc: ^8.1.4
@@ -54,7 +54,6 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
@@ -62,23 +61,19 @@ flutter:
     - assets/icons/
 
   fonts:
-    - family: Poppins
+    - family: PlusJakartaSans
       fonts:
-        - asset: assets/fonts/poppins/Poppins-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/poppins/Poppins-ExtraLight.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/poppins/Poppins-Light.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Light.ttf
           weight: 300
-        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Medium.ttf
           weight: 500
-        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Bold.ttf
           weight: 700
-        - asset: assets/fonts/poppins/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/poppins/Poppins-Black.ttf
-          weight: 900

@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static final theme = ThemeData(
     colorScheme: const ColorScheme.light(
-      primary: Colours.blue500,
-      secondary: Colours.gold500,
-      error: Colours.error500,
-      surface: Colours.grey50,
+      primary: Colours.appTone300,
+      error: Colours.danger300,
     ),
-    fontFamily: Fonts.poppins,
+    fontFamily: Fonts.plusJakartaSans,
     useMaterial3: true,
   );
 }
