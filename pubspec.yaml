@@ -22,6 +22,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  aura_box: ^1.0.2
   bloc: ^8.1.4
   cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.6

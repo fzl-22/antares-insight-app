@@ -26,4 +26,5 @@ class Media {
   // Images
   static const dartLogo = '$_baseImage/dart_logo.svg';
   static const flutterLogo = '$_baseImage/flutter_logo.svg';
+  static const antaresLogo = '$_baseImage/antares_logo.png';
 }

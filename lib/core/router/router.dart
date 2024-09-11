@@ -1,10 +1,15 @@
+import 'package:antares_insight_app/core/common/transitions/transitions.dart';
+import 'package:antares_insight_app/core/injection/injection.dart';
 import 'package:antares_insight_app/core/utils/logger.dart';
+import 'package:antares_insight_app/src/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:antares_insight_app/src/auth/presentation/views/register_screen.dart';
 import 'package:antares_insight_app/src/dashboard/presentation/views/dashboard_screen.dart';
 import 'package:antares_insight_app/src/device/presentation/views/device_screen.dart';
 import 'package:antares_insight_app/src/home/presentation/views/home_screen.dart';
 import 'package:antares_insight_app/src/service/presentation/views/service_screen.dart';
 import 'package:antares_insight_app/src/setting/presentation/views/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 part 'observer.router.dart';
@@ -26,8 +31,21 @@ class AppRouter {
   static final routerConfig = GoRouter(
     navigatorKey: _rootNavigatorKey,
     observers: [RouterObserver()],
-    initialLocation: HomeScreen.path,
+    initialLocation: RegisterScreen.path,
     routes: [
+      GoRoute(
+        path: RegisterScreen.path,
+        name: RegisterScreen.name,
+        pageBuilder: (context, state) {
+          return SlideUpRouteTransition(
+            key: state.pageKey,
+            child: BlocProvider(
+              create: (context) => sl<AuthBloc>(),
+              child: const RegisterScreen(),
+            ),
+          );
+        },
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return DashboardScreen(
