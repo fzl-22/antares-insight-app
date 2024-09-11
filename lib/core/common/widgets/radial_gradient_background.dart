@@ -12,22 +12,30 @@ class RadialGradientBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuraBox(
-      spots: [
-        AuraSpot(
-          color: Colours.appTone300,
-          radius: 196,
-          alignment: const Alignment(1, -0.25),
-          blurRadius: 96,
+    return Stack(
+      children: [
+        ColoredBox(
+          color: Colors.white,
+          child: AuraBox(
+            spots: [
+              AuraSpot(
+                color: Colours.appTone300,
+                radius: 196,
+                alignment: const Alignment(1, -0.25),
+                blurRadius: 96,
+              ),
+              AuraSpot(
+                color: Colours.success200,
+                radius: 156,
+                alignment: const Alignment(-0.8, 0.25),
+                blurRadius: 128,
+              ),
+            ],
+            child: const SizedBox.expand(),
+          ),
         ),
-        AuraSpot(
-          color: Colours.success200,
-          radius: 156,
-          alignment: const Alignment(-0.8, 0.25),
-          blurRadius: 128,
-        ),
+        child,
       ],
-      child: child,
     );
   }
 }

@@ -30,8 +30,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     try {
       const path = '/api/auth/register';
+      final data = {
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+      };
 
-      final response = await _dio.post<DataMap>(path);
+      final response = await _dio.post<DataMap>(path, data: data);
 
       final responseData = response.data!['data'] as DataMap;
       final user = UserModel.fromMap(responseData);

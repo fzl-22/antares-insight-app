@@ -142,9 +142,17 @@ class HttpException extends Equatable implements Exception {
         message = 'Bad certificate error';
       case DioExceptionType.badResponse:
         statusCode = exception.response?.statusCode ?? 500;
-        message = message ??=
-            (exception.response?.data as DataMap?)?['message'] as String? ??
-                'Oops, something went wrong. Please try again later';
+      final responseData = exception.response?.data as DataMap?;
+      if (responseData != null) {
+        if (responseData['message'] is List) {
+          message = (responseData['message'] as List).join(', ');
+        } else {
+          message = responseData['message'] as String? ??
+              'Oops, something went wrong. Please try again later';
+        }
+      } else {
+        message = 'Oops, something went wrong. Please try again later';
+      }
       case DioExceptionType.unknown:
         statusCode = 520;
         message = 'Oops, something went wrong. Please try again later';
