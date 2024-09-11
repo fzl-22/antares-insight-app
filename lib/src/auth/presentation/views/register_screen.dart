@@ -135,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     Validators.maxLength(
                                       16,
-                                      'Kata sandi maksimal 8 karakter',
+                                      'Kata sandi maksimal 16 karakter',
                                     ),
                                   ]),
                                   onEditingComplete: context.nextFocus,
