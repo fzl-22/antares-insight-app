@@ -15,7 +15,7 @@ class UserModel extends User {
 
   factory UserModel.fromMap(DataMap map) {
     return UserModel(
-      id: map['_id'] as String,
+      id: map['id'] as String,
       email: map['email'] as String,
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
