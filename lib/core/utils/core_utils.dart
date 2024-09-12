@@ -46,7 +46,7 @@ class CoreUtils<T> {
           padding: const EdgeInsets.all(12),
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.only(
-            bottom: context.height - 120,
+            bottom: context.height - 100,
             left: 16,
             right: 16,
           ),
