@@ -1,4 +1,4 @@
-import 'package:antares_insight_app/src/auth/presentation/widgets/gradient_box_border.dart';
+import 'package:antares_insight_app/core/common/widgets/gradient_box_border.dart';
 import 'package:flutter/material.dart';
 
 class GlassCard extends StatelessWidget {
