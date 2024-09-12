@@ -23,6 +23,7 @@ class DioHttpClient {
         headers: {
           Headers.contentTypeHeader: Headers.jsonContentType,
           Headers.acceptHeader: Headers.acceptHeader,
+          'X-API-Key': Env.apiKey,
         },
       );
 

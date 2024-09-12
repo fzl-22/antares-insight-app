@@ -18,4 +18,7 @@ part 'env.g.dart';
 abstract class Env {
   @EnviedField()
   static const String baseUrl = _Env.baseUrl;
+
+  @EnviedField(obfuscate: true)
+  static final String apiKey = _Env.apiKey;
 }
