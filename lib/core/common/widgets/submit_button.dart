@@ -1,4 +1,3 @@
-import 'package:antares_insight_app/core/common/widgets/clickable_text.dart';
 import 'package:antares_insight_app/core/extensions/context_extension.dart';
 import 'package:antares_insight_app/core/resources/colours.dart';
 import 'package:antares_insight_app/core/resources/typographies.dart';
@@ -31,7 +30,7 @@ class SubmitButton extends StatelessWidget {
       borderOnForeground: false,
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: onPressed,
+        onTap: isLoading ? null : onPressed,
         child: Ink(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           decoration: BoxDecoration(
@@ -40,7 +39,23 @@ class SubmitButton extends StatelessWidget {
             color: Colours.appTone100,
           ),
           child: Center(
-            child: GradientText(text),
+            child: isLoading
+                ? const SizedBox(
+                    height: 16,
+                    width: 16,
+                    child: CircularProgressIndicator.adaptive(
+                      strokeAlign: BorderSide.strokeAlignInside,
+                      strokeWidth: 3,
+                      strokeCap: StrokeCap.round,
+                      backgroundColor: Colours.transparent,
+                    ),
+                  )
+                : Text(
+                    text,
+                    style: Typographies.semiBold12.copyWith(
+                      color: Colours.appTone300,
+                    ),
+                  ),
           ),
         ),
       ),
@@ -104,7 +119,7 @@ class SubmitButton extends StatelessWidget {
                         )
                       : Text(
                           text,
-                          style: Typographies.semiBold14.copyWith(
+                          style: Typographies.semiBold12.copyWith(
                             color: context.colorScheme.onPrimary,
                           ),
                         ),

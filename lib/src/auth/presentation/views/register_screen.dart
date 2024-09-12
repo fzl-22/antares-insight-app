@@ -1,5 +1,3 @@
-import 'package:antares_insight_app/core/common/widgets/clickable_text.dart';
-import 'package:antares_insight_app/src/auth/presentation/widgets/glass_card.dart';
 import 'package:antares_insight_app/core/common/widgets/radial_gradient_background.dart';
 import 'package:antares_insight_app/core/common/widgets/submit_button.dart';
 import 'package:antares_insight_app/core/common/widgets/text_input_field.dart';
@@ -8,6 +6,7 @@ import 'package:antares_insight_app/core/resources/media.dart';
 import 'package:antares_insight_app/core/utils/core_utils.dart';
 import 'package:antares_insight_app/core/utils/enums.dart';
 import 'package:antares_insight_app/src/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:antares_insight_app/src/auth/presentation/widgets/glass_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
@@ -142,15 +141,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ]),
                                   onEditingComplete: context.nextFocus,
                                 ),
-                                const SizedBox(height: 12),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child:
-                                        const GradientText('Lupa Kata Sandi?'),
-                                  ),
-                                ),
                                 const SizedBox(height: 24),
                                 BlocConsumer<AuthBloc, AuthState>(
                                   listener: (context, state) {
@@ -185,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 const SizedBox(height: 12),
                                 SubmitButton.secondary(
                                   onPressed: () {},
-                                  text: 'Belum Punya Akun?',
+                                  text: 'Sudah Punya Akun',
                                 ),
                               ],
                             ),
