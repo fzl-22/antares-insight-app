@@ -23,4 +23,15 @@ class AuthState with _$AuthState {
   const factory AuthState.loginUserFailed({
     required String message,
   }) = _LoggingInUserFailed;
+
+  const factory AuthState.verifyingUserAuthentication() =
+      _VerifyingUserAuthentication;
+
+  const factory AuthState.userAuthenticationVerified({
+    required User user,
+  }) = _UserAuthenticationVerified;
+
+  const factory AuthState.verifyUserAuthenticationFailed({
+    required String message,
+  }) = _VerifyUserAuthenticationFailed;
 }

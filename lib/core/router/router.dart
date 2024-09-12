@@ -1,7 +1,9 @@
 import 'package:antares_insight_app/core/common/transitions/transitions.dart';
+import 'package:antares_insight_app/core/common/views/splash_screen.dart';
 import 'package:antares_insight_app/core/injection/injection.dart';
 import 'package:antares_insight_app/core/utils/logger.dart';
 import 'package:antares_insight_app/src/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:antares_insight_app/src/auth/presentation/views/init_screen.dart';
 import 'package:antares_insight_app/src/auth/presentation/views/login_screen.dart';
 import 'package:antares_insight_app/src/auth/presentation/views/register_screen.dart';
 import 'package:antares_insight_app/src/dashboard/presentation/views/dashboard_screen.dart';
@@ -9,7 +11,6 @@ import 'package:antares_insight_app/src/device/presentation/views/device_screen.
 import 'package:antares_insight_app/src/home/presentation/views/home_screen.dart';
 import 'package:antares_insight_app/src/service/presentation/views/service_screen.dart';
 import 'package:antares_insight_app/src/setting/presentation/views/setting_screen.dart';
-import 'package:antares_insight_app/src/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -33,18 +34,33 @@ class AppRouter {
   static final routerConfig = GoRouter(
     navigatorKey: _rootNavigatorKey,
     observers: [RouterObserver()],
-    initialLocation: SplashScreen.path,
+    initialLocation: InitScreen.path,
+    redirect: (context, state) {
+      final authState = context.read<AuthBloc>().state;
+      return authState.maybeWhen(
+        userAuthenticationVerified: (_) => HomeScreen.path,
+        verifyUserAuthenticationFailed: (_) => LoginScreen.name,
+        orElse: () => null,
+      );
+    },
     routes: [
+      GoRoute(
+        path: InitScreen.path,
+        name: InitScreen.name,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: const InitScreen(),
+          );
+        },
+      ),
       GoRoute(
         path: SplashScreen.path,
         name: SplashScreen.name,
         pageBuilder: (context, state) {
           return SlideUpRouteTransition(
             key: state.pageKey,
-            child: BlocProvider(
-              create: (context) => sl<AuthBloc>(),
-              child: const SplashScreen(),
-            ),
+            child: const SplashScreen(),
           );
         },
       ),
@@ -54,10 +70,7 @@ class AppRouter {
         pageBuilder: (context, state) {
           return SlideUpRouteTransition(
             key: state.pageKey,
-            child: BlocProvider(
-              create: (context) => sl<AuthBloc>(),
-              child: const RegisterScreen(),
-            ),
+            child: const RegisterScreen(),
           );
         },
       ),
@@ -67,10 +80,7 @@ class AppRouter {
         pageBuilder: (context, state) {
           return SlideUpRouteTransition(
             key: state.pageKey,
-            child: BlocProvider(
-              create: (context) => sl<AuthBloc>(),
-              child: const LoginScreen(),
-            ),
+            child: const LoginScreen(),
           );
         },
       ),

@@ -13,4 +13,7 @@ class AuthEvent with _$AuthEvent {
     required String email,
     required String password,
   }) = _LoginUserEvent;
+
+  const factory AuthEvent.verifyUserAuthenticationEvent() =
+      _VerifyUserAuthenticationEvent;
 }

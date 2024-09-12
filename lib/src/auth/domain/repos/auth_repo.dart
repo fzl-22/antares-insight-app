@@ -13,4 +13,6 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+
+  ResultFuture<User> verifyUserAuthentication();
 }

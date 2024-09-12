@@ -4,12 +4,17 @@ import 'package:antares_insight_app/core/resources/media.dart';
 import 'package:antares_insight_app/core/resources/typographies.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   static const name = 'splash';
   static const path = '/splash';
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return RadialGradientBackground(

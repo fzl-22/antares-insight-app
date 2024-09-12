@@ -17,6 +17,10 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String password,
   });
+
+  Future<UserModel> verifyUserAuthentication({
+    required String accessToken,
+  });
 }
 
 @LazySingleton(as: AuthRemoteDataSource)
@@ -76,6 +80,30 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final user = UserModel.fromMap(responseData['user'] as DataMap);
 
       return Pair(token, user);
+    } on DioException catch (e) {
+      throw HttpException.fromDio(e);
+    } catch (e) {
+      throw GeneralException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel> verifyUserAuthentication({
+    required String accessToken,
+  }) async {
+    try {
+      const path = '/api/users/current';
+      final extra = {'accessToken': accessToken};
+
+      final response = await _dio.get<DataMap>(
+        path,
+        options: Options(extra: extra),
+      );
+
+      final responseData = response.data!['data'] as DataMap;
+
+      final user = UserModel.fromMap(responseData);
+      return user;
     } on DioException catch (e) {
       throw HttpException.fromDio(e);
     } catch (e) {

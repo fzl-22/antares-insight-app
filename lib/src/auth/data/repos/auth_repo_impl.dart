@@ -66,4 +66,23 @@ class AuthRepoImpl implements AuthRepo {
       return Left(GeneralFailure.fromException(e));
     }
   }
+
+  @override
+  ResultFuture<User> verifyUserAuthentication() async {
+    try {
+      final accessToken = await _tokenManager.read();
+
+      final result = await _remoteDataSource.verifyUserAuthentication(
+        accessToken: accessToken,
+      );
+
+      return Right(result);
+    } on CacheException catch (e) {
+      return Left(CacheFailure.fromException(e));
+    } on HttpException catch (e) {
+      return Left(HttpFailure.fromException(e));
+    } on GeneralException catch (e) {
+      return Left(GeneralFailure.fromException(e));
+    }
+  }
 }
