@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:antares_insight_app/core/common/widgets/clickable_text.dart';
 import 'package:antares_insight_app/core/common/widgets/radial_gradient_background.dart';
 import 'package:antares_insight_app/core/common/widgets/submit_button.dart';
