@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:antares_insight_app/core/common/widgets/clickable_text.dart';
 import 'package:antares_insight_app/core/common/widgets/radial_gradient_background.dart';
 import 'package:antares_insight_app/core/common/widgets/submit_button.dart';
 import 'package:antares_insight_app/core/common/widgets/text_input_field.dart';
@@ -6,44 +9,39 @@ import 'package:antares_insight_app/core/resources/media.dart';
 import 'package:antares_insight_app/core/utils/core_utils.dart';
 import 'package:antares_insight_app/core/utils/enums.dart';
 import 'package:antares_insight_app/src/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import 'package:antares_insight_app/src/auth/presentation/views/login_screen.dart';
+import 'package:antares_insight_app/src/auth/presentation/views/register_screen.dart';
 import 'package:antares_insight_app/src/auth/presentation/widgets/glass_card.dart';
+import 'package:antares_insight_app/src/home/presentation/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-  static const name = 'register';
-  static const path = '/register';
+  static const name = 'login';
+  static const path = '/login';
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  Future<void> _registerUser() async {
+  Future<void> _loginUser() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    final firstName = _firstNameController.text.trim();
-    final lastName = _lastNameController.text.trim();
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
     context.read<AuthBloc>().add(
-          AuthEvent.registerUserEvent(
-            firstName: firstName,
-            lastName: lastName,
+          AuthEvent.loginUserEvent(
             email: email,
             password: password,
           ),
@@ -52,8 +50,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -88,39 +84,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: Column(
                               children: [
                                 TextInputField(
-                                  controller: _firstNameController,
-                                  label: 'Nama Depan',
-                                  hintText: 'Masukkan nama depan',
-                                  validator: Validators.required(
-                                    'Nama depan wajib diisi',
-                                  ),
-                                  onEditingComplete: context.nextFocus,
-                                ),
-                                const SizedBox(height: 16),
-                                TextInputField(
-                                  controller: _lastNameController,
-                                  label: 'Nama Belakang',
-                                  hintText: 'Masukkan nama belakang',
-                                  validator: Validators.required(
-                                    'Nama belakang wajib diisi',
-                                  ),
-                                  onEditingComplete: context.nextFocus,
-                                ),
-                                const SizedBox(height: 16),
-                                TextInputField(
                                   controller: _emailController,
                                   label: 'Email',
                                   hintText: 'Masukkan alamat email',
                                   keyboardType: TextInputType.emailAddress,
-                                  validator: Validators.compose([
-                                    Validators.required(
-                                      'Alamat email wajib diisi',
-                                    ),
-                                    Validators.email(
-                                      'Format alamat email salah, '
-                                      'periksa kembali email anda',
-                                    ),
-                                  ]),
+                                  validator: Validators.required(
+                                    'Alamat email wajib diisi',
+                                  ),
                                   onEditingComplete: context.nextFocus,
                                 ),
                                 const SizedBox(height: 16),
@@ -128,35 +98,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   controller: _passwordController,
                                   label: 'Kata Sandi',
                                   hintText: 'Masukkan kata sandi',
-                                  validator: Validators.compose([
-                                    Validators.required(
-                                      'Kata sandi wajib diisi',
-                                    ),
-                                    Validators.minLength(
-                                      8,
-                                      'Kata sandi minimal 8 karakter',
-                                    ),
-                                    Validators.maxLength(
-                                      16,
-                                      'Kata sandi maksimal 16 karakter',
-                                    ),
-                                  ]),
+                                  validator: Validators.required(
+                                    'Kata sandi wajib diisi',
+                                  ),
                                   onEditingComplete: context.nextFocus,
+                                ),
+                                const SizedBox(height: 12),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: GestureDetector(
+                                    onTap: () {},
+                                    child: const GradientText('Lupa Password?'),
+                                  ),
                                 ),
                                 const SizedBox(height: 24),
                                 BlocConsumer<AuthBloc, AuthState>(
                                   listener: (context, state) {
                                     state.whenOrNull(
-                                      userRegistered: (user) {
+                                      userLoggedIn: (user) {
+                                        final fullName =
+                                            // ignore: lines_longer_than_80_chars
+                                            '${user.firstName} ${user.lastName}';
                                         CoreUtils.showSnackBar(
                                           context: context,
-                                          message:
-                                              'User telah berhasil didaftarkan',
+                                          message: 'Selamat datang, $fullName!',
                                           type: SnackBarType.success,
                                         );
-                                        context.goNamed(LoginScreen.name);
+                                        context.goNamed(HomeScreen.name);
                                       },
-                                      registerUserFailed: (message) {
+                                      loginUserFailed: (message) {
                                         CoreUtils.showSnackBar(
                                           context: context,
                                           message: message,
@@ -167,17 +137,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                   builder: (context, state) {
                                     return state.maybeWhen(
-                                      registeringUser: () {
+                                      loggingInUser: () {
                                         return SubmitButton(
                                           isLoading: true,
-                                          onPressed: _registerUser,
-                                          text: 'Daftar',
+                                          onPressed: _loginUser,
+                                          text: 'Masuk',
                                         );
                                       },
                                       orElse: () {
                                         return SubmitButton(
-                                          onPressed: _registerUser,
-                                          text: 'Daftar',
+                                          onPressed: _loginUser,
+                                          text: 'Masuk',
                                         );
                                       },
                                     );
@@ -186,8 +156,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 const SizedBox(height: 12),
                                 SubmitButton.secondary(
                                   onPressed: () =>
-                                      context.goNamed(LoginScreen.name),
-                                  text: 'Sudah Punya Akun',
+                                      context.goNamed(RegisterScreen.name),
+                                  text: 'Belum Punya Akun',
                                 ),
                               ],
                             ),

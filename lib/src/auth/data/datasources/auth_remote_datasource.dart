@@ -1,4 +1,5 @@
 import 'package:antares_insight_app/core/errors/exceptions.dart';
+import 'package:antares_insight_app/core/utils/pair.dart';
 import 'package:antares_insight_app/core/utils/typedef.dart';
 import 'package:antares_insight_app/src/auth/data/models/user_model.dart';
 import 'package:dio/dio.dart';
@@ -8,6 +9,11 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> registerUser({
     required String firstName,
     required String lastName,
+    required String email,
+    required String password,
+  });
+
+  Future<Pair<String, UserModel>> loginUser({
     required String email,
     required String password,
   });
@@ -43,6 +49,33 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final user = UserModel.fromMap(responseData);
 
       return user;
+    } on DioException catch (e) {
+      throw HttpException.fromDio(e);
+    } catch (e) {
+      throw GeneralException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<Pair<String, UserModel>> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      const path = '/api/auth/login';
+      final data = {
+        'email': email,
+        'password': password,
+      };
+
+      final response = await _dio.post<DataMap>(path, data: data);
+
+      final responseData = response.data!['data'] as DataMap;
+
+      final token = responseData['token'] as String;
+      final user = UserModel.fromMap(responseData['user'] as DataMap);
+
+      return Pair(token, user);
     } on DioException catch (e) {
       throw HttpException.fromDio(e);
     } catch (e) {

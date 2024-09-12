@@ -13,4 +13,14 @@ class AuthState with _$AuthState {
   const factory AuthState.registerUserFailed({
     required String message,
   }) = _RegisteringUserFailed;
+
+  const factory AuthState.loggingInUser() = _LoggingInUser;
+
+  const factory AuthState.userLoggedIn({
+    required User user,
+  }) = _UserLoggedIn;
+
+  const factory AuthState.loginUserFailed({
+    required String message,
+  }) = _LoggingInUserFailed;
 }

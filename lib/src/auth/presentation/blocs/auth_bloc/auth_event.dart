@@ -8,4 +8,9 @@ class AuthEvent with _$AuthEvent {
     required String email,
     required String password,
   }) = _RegisterUserEvent;
+
+  const factory AuthEvent.loginUserEvent({
+    required String email,
+    required String password,
+  }) = _LoginUserEvent;
 }

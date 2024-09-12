@@ -8,6 +8,10 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 class CoreUtils<T> {
   const CoreUtils._();
 
+  static void clearSnackbBar(BuildContext context) {
+    context.clearSnackBars();
+  }
+
   static void showSnackBar({
     required BuildContext context,
     required String message,
@@ -44,12 +48,7 @@ class CoreUtils<T> {
       ..showSnackBar(
         SnackBar(
           padding: const EdgeInsets.all(12),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: context.height - 100,
-            left: 16,
-            right: 16,
-          ),
+          behavior: SnackBarBehavior.fixed,
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

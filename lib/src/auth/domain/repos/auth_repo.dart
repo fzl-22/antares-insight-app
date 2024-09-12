@@ -8,4 +8,9 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+
+  ResultFuture<User> loginUser({
+    required String email,
+    required String password,
+  });
 }

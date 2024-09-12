@@ -2,6 +2,7 @@ import 'package:antares_insight_app/core/common/transitions/transitions.dart';
 import 'package:antares_insight_app/core/injection/injection.dart';
 import 'package:antares_insight_app/core/utils/logger.dart';
 import 'package:antares_insight_app/src/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import 'package:antares_insight_app/src/auth/presentation/views/login_screen.dart';
 import 'package:antares_insight_app/src/auth/presentation/views/register_screen.dart';
 import 'package:antares_insight_app/src/dashboard/presentation/views/dashboard_screen.dart';
 import 'package:antares_insight_app/src/device/presentation/views/device_screen.dart';
@@ -42,6 +43,19 @@ class AppRouter {
             child: BlocProvider(
               create: (context) => sl<AuthBloc>(),
               child: const RegisterScreen(),
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: LoginScreen.path,
+        name: LoginScreen.name,
+        pageBuilder: (context, state) {
+          return SlideUpRouteTransition(
+            key: state.pageKey,
+            child: BlocProvider(
+              create: (context) => sl<AuthBloc>(),
+              child: const LoginScreen(),
             ),
           );
         },
