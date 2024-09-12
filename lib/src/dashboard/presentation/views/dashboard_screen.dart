@@ -1,3 +1,4 @@
+import 'package:antares_insight_app/core/extensions/context_extension.dart';
 import 'package:antares_insight_app/core/resources/colours.dart';
 import 'package:antares_insight_app/core/resources/media.dart';
 import 'package:antares_insight_app/core/resources/typographies.dart';
@@ -47,7 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
         unselectedItemColor: Colours.neutral300,
-        selectedItemColor: Colours.neutral700,
+        selectedItemColor: context.colorScheme.primary,
         unselectedLabelStyle: Typographies.normal12,
         selectedLabelStyle: Typographies.semiBold12,
         items: const [
