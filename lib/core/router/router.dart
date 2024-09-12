@@ -9,6 +9,7 @@ import 'package:antares_insight_app/src/device/presentation/views/device_screen.
 import 'package:antares_insight_app/src/home/presentation/views/home_screen.dart';
 import 'package:antares_insight_app/src/service/presentation/views/service_screen.dart';
 import 'package:antares_insight_app/src/setting/presentation/views/setting_screen.dart';
+import 'package:antares_insight_app/src/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -32,8 +33,21 @@ class AppRouter {
   static final routerConfig = GoRouter(
     navigatorKey: _rootNavigatorKey,
     observers: [RouterObserver()],
-    initialLocation: RegisterScreen.path,
+    initialLocation: SplashScreen.path,
     routes: [
+      GoRoute(
+        path: SplashScreen.path,
+        name: SplashScreen.name,
+        pageBuilder: (context, state) {
+          return SlideUpRouteTransition(
+            key: state.pageKey,
+            child: BlocProvider(
+              create: (context) => sl<AuthBloc>(),
+              child: const SplashScreen(),
+            ),
+          );
+        },
+      ),
       GoRoute(
         path: RegisterScreen.path,
         name: RegisterScreen.name,
