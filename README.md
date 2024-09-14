@@ -36,9 +36,9 @@ curl -s https://raw.githubusercontent.com/fzl-22/faisal-starter-code-flutter/mas
 
 | Software | Version |
 | -------- | ------- |
-| Flutter  | 3.19.2  |
-| Dart     | 3.3.0   |
-| OpenJDK  | 11.0.22 |
+| Flutter  | 3.22.3  |
+| Dart     | 3.4.4   |
+| OpenJDK  | 17.0.10 |
 
 ## 2 Dependencies
 
