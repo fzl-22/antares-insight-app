@@ -3,6 +3,7 @@ import 'package:antares_insight_app/core/utils/pair.dart';
 import 'package:antares_insight_app/core/utils/typedef.dart';
 import 'package:antares_insight_app/src/auth/data/models/user_model.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class AuthRemoteDataSource {
@@ -27,9 +28,12 @@ abstract class AuthRemoteDataSource {
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl({
     required Dio dio,
-  }) : _dio = dio;
+    required FirebaseMessaging firebaseMessaging,
+  })  : _dio = dio,
+        _firebaseMessaging = firebaseMessaging;
 
   final Dio _dio;
+  final FirebaseMessaging _firebaseMessaging;
 
   @override
   Future<UserModel> registerUser({
@@ -66,10 +70,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     try {
+      final fcmToken = await _firebaseMessaging.getToken();
+
       const path = '/api/auth/login';
       final data = {
         'email': email,
         'password': password,
+        'fcmToken': fcmToken,
       };
 
       final response = await _dio.post<DataMap>(path, data: data);
